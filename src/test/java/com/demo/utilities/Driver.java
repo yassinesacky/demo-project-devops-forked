@@ -5,7 +5,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class Driver {
@@ -43,6 +47,49 @@ public class Driver {
                     driver=new FirefoxDriver(firefoxOptions);
                     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
+                case "remote-chrome":
+                    DesiredCapabilities capabilities = new DesiredCapabilities();
+                    capabilities.setBrowserName("chrome");
+
+                    try {
+                         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+                    } catch (MalformedURLException e) {
+
+                    }
+                    break;
+
+                case "remote-firefox":
+                    DesiredCapabilities firefox = new DesiredCapabilities();
+                    firefox.setBrowserName("firefox");
+
+                    try {
+                        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefox);
+                    } catch (MalformedURLException e) {
+
+                    }
+                    break;
+
+
+                case "remote-chrome-aws":
+                    ChromeOptions remoteOptions = new ChromeOptions();
+                    remoteOptions.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
+                    try {
+                        driver = new RemoteWebDriver(new URL("http://54.89.147.119:4444/wd/hub"), remoteOptions);
+                    } catch (MalformedURLException e) {
+
+                    }
+                    break;
+
+                case "remote-firefox-aws":
+                    FirefoxOptions firefoxOptions1 = new FirefoxOptions();
+                    firefoxOptions1.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
+                    try {
+                        driver = new RemoteWebDriver(new URL("http://54.89.147.119:4444/wd/hub"), firefoxOptions1);
+                    } catch (MalformedURLException e) {
+
+                    }
+                    break;
+
             }
         }
         return driver;
