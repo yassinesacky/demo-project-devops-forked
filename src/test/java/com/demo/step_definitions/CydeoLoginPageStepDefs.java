@@ -48,14 +48,14 @@ public class CydeoLoginPageStepDefs {
 
     @When("User enters the invalid password as {string}")
     public void user_enters_the_invalid_password_as(String password) {
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(5);
         cydeoLoginPage.password.sendKeys(password);
 
     }
 
     @Then("Verify the user is on the login page")
     public void verify_the_user_is_on_the_login_page() {
-        BrowserUtils.sleep(1);
+        BrowserUtils.sleep(5);
         BrowserUtils.verifyTitle("Log in | dashboard");
 
     }

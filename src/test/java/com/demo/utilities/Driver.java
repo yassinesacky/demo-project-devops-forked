@@ -52,7 +52,7 @@ public class Driver {
                     capabilities.setBrowserName("chrome");
 
                     try {
-                         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+                         driver = new RemoteWebDriver(new URL(ConfigurationReader.getProperty("local.grid")+"/wd/hub"), capabilities);
                     } catch (MalformedURLException e) {
 
                     }
