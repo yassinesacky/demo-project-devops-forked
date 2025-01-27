@@ -72,7 +72,8 @@ public class Driver {
 
                 case "remote-chrome-aws":
                     ChromeOptions remoteOptions = new ChromeOptions();
-                    remoteOptions.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
+                    remoteOptions.addArguments("--start-maximized");
+                    //remoteOptions.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
                     try {
                         driver = new RemoteWebDriver(new URL("http://54.89.147.119:4444/wd/hub"), remoteOptions);
                     } catch (MalformedURLException e) {
