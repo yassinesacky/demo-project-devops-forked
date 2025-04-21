@@ -11,7 +11,7 @@ Feature: User should be able to login the Cydeo application
     Then Verify the user is on the dashboard page
 
 
-  @cydeo @invalidLogin  @CRITICAL
+  @cydeo @invalidLogin  @BLOCKER
   Scenario: User should not be able to login the application with invalid credentials
     Given User is on the login page
     When User enters the invalid username as "invalid@cydeo.com"
