@@ -25,8 +25,8 @@ public class Driver {
     public static WebDriver getDriver(){
         if(driverPool.get() == null){
             String browserType = System.getProperty("browser") !=null?System.getProperty("browser"): ConfigurationReader.getProperty("browser");
-           // String gridUrl = System.getProperty("GRID_URL")!=null?ConfigurationReader.getProperty("local.grid"): ConfigurationReader.getProperty("grid.url");
-            String gridUrl = ConfigurationReader.getProperty("local.grid");
+            String gridUrl = System.getProperty("GRID_URL")!=null?ConfigurationReader.getProperty("local.grid"): ConfigurationReader.getProperty("grid.url");
+           // String gridUrl = ConfigurationReader.getProperty("grid.url");
             switch (browserType){
                 case "chrome" -> {
                     ChromeOptions options = new ChromeOptions();
@@ -82,7 +82,7 @@ public class Driver {
                     remoteOptions.addArguments("--start-maximized");
                     //remoteOptions.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
                     try {
-                        driverPool.set(new RemoteWebDriver(new URL(gridUrl+"/wd/hub"), remoteOptions));
+                        driverPool.set(new RemoteWebDriver(new URL(gridUrl), remoteOptions));
                     } catch (MalformedURLException e) {
 
                     }
